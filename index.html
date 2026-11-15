@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Projekt 111 – otázky a odpovědi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --brand:#00073D; --brand-2:#0B1A63; --accent:#0079FF; --accent-ink:#0061CC;
+  --bg:#F5F7FB; --surface:#FFFFFF; --fg:#0D1430; --muted:#5B6280; --line:#DDE2EE; --chip:#E8F0FF;
+  --ok:#0E8A5F; --ok-bg:#E3F5EE;
+  --f-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#070B22; --surface:#0E1433; --fg:#E8ECF8; --muted:#9AA3C2; --line:#232B52; --chip:#13204D; --accent-ink:#5AA9FF;
+  --ok:#4FD1A0; --ok-bg:#0F2A24; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#070B22; --surface:#0E1433; --fg:#E8ECF8; --muted:#9AA3C2; --line:#232B52; --chip:#13204D; --accent-ink:#5AA9FF;
+  --ok:#4FD1A0; --ok-bg:#0F2A24; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-sans);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent-ink)}
+h1,h2,h3{text-wrap:balance;line-height:1.2;margin:0}
+p{margin:0}
+
+.band{background:var(--brand);color:#fff;background-image:radial-gradient(1200px 400px at 85% -10%,var(--brand-2),transparent 60%)}
+.band .wrap{padding-block:28px 44px;display:flex;flex-direction:column;gap:28px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{height:28px;width:auto}
+.tag{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9FB4E8}
+.ones{display:flex;gap:10px;font-weight:800;font-size:clamp(56px,11vw,96px);line-height:.9;letter-spacing:-.02em}
+.ones span{color:#fff}.ones span:nth-child(2){color:var(--accent)}
+.band h1{font-size:clamp(28px,4.6vw,42px);font-weight:700;letter-spacing:-.015em;max-width:22ch}
+.band .lead{color:#C9D3F0;font-size:18px;max-width:62ch}
+.motto{display:flex;flex-wrap:wrap;gap:8px}
+.motto b{font-weight:600;font-size:14px;padding:6px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#fff}
+
+main .wrap{padding-block:40px 64px;display:flex;flex-direction:column;gap:56px}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-ink)}
+section>header{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+section h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--muted);max-width:65ch}
+
+.tldr{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+.tldr div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tldr strong{font-size:17px}
+.tldr span{color:var(--muted);font-size:15.5px}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font-size:14px;font-weight:600;text-decoration:none;color:var(--fg);background:var(--chip);padding:7px 13px;border-radius:999px}
+.toc a:hover,.toc a:focus-visible{background:var(--accent);color:#fff;outline:none}
+
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.role{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.role .who{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.role h3{font-size:19px;font-weight:700}
+.code{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);background:var(--chip);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.role .what{color:var(--muted);font-size:15px}
+.role ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px;font-size:15px}
+.role .ask{font-size:14.5px;border-top:1px dashed var(--line);padding-top:10px;color:var(--fg)}
+.role .ask b{font-weight:600;color:var(--accent-ink)}
+.role.wide{grid-column:1/-1}
+
+.qa{display:flex;flex-direction:column}
+.q{padding:20px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.q:last-child{border-bottom:1px solid var(--line)}
+.q h3{font-size:18.5px;font-weight:600}
+.q p,.q ul{color:var(--fg);max-width:68ch}
+.q ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.q p+p{margin-top:4px}
+.quote{border-left:3px solid var(--accent);padding:4px 0 4px 14px;color:var(--fg);font-style:italic;max-width:62ch}
+
+.ks{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;margin-top:6px}
+.ks svg{width:100%;height:auto;max-width:200px}
+.ks dl{margin:0;display:grid;gap:12px}
+.ks dt{font-weight:700}
+.ks dd{margin:0;color:var(--muted);font-size:15.5px}
+
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:18px;padding:14px 0;border-top:1px solid var(--line)}
+.tl li:last-child{border-bottom:1px solid var(--line)}
+.tl time{font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.tl .now time{color:var(--ok)}
+.tl span{min-width:0}
+
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.contact div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.contact strong{font-size:16px}
+.contact span{color:var(--muted);font-size:15px}
+
+footer .wrap{padding-block:0 48px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:720px){
+  .tldr,.roles,.contact{grid-template-columns:minmax(0,1fr)}
+  .ks{grid-template-columns:minmax(0,1fr)}
+  .ks svg{max-width:170px;margin:0 auto}
+  .tl li{grid-template-columns:minmax(0,1fr);gap:2px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <div class="top"><svg class="logo" role="img" aria-label="Algotech" viewBox="0 0 148.59 33.96" xmlns="http://www.w3.org/2000/svg" overflow="hidden"><path d="M16.98 0C7.6 0 0 7.6 0 16.98 0 26.36 7.6 33.96 16.98 33.96 21.08 33.96 25.18 32.48 28.42 29.53L28.42 28.17C26.13 30.46 23.13 31.6 20.13 31.6 13.65 31.6 8.41 26.35 8.41 19.88 8.41 13.41 13.66 8.16 20.13 8.16 26.6 8.16 31.85 13.41 31.85 19.88L31.85 31.6 28.98 31.6 28.98 33.95 33.95 33.95 33.95 16.98C33.96 7.6 26.36 0 16.98 0Z" fill="#0079FF"/><g><path d="M56.64 26.38 53.67 26.38 53.67 24.72C53.45 24.99 53.16 25.23 52.6 25.63 51.4 26.46 50.27 26.83 48.99 26.83 45.22 26.83 42.45 23.76 42.45 19.59 42.45 15.42 45.36 12.49 49.16 12.49 50.87 12.49 52.69 13.37 53.67 14.65L53.67 12.94 56.64 12.94 56.64 26.38 56.64 26.38ZM45.69 19.72C45.69 22.07 47.45 23.89 49.67 23.89 51.89 23.89 53.6 22.08 53.6 19.67 53.6 17.26 51.94 15.45 49.67 15.45 47.4 15.45 45.69 17.32 45.69 19.73Z" fill="#FFFFFF"/><path d="M59.98 8.48 63.21 8.48 63.21 26.38 59.98 26.38 59.98 8.48Z" fill="#FFFFFF"/><path d="M79.8 12.94 79.8 23.92C79.8 26.22 79.32 27.82 78.2 29.18 76.78 30.86 74.73 31.83 72.46 31.83 69.39 31.83 66.77 30.12 65.7 27.4L69.36 27.4C70.22 28.39 71.31 28.89 72.64 28.89 74.97 28.89 76.68 27.18 76.81 24.67 75.58 26.14 74.16 26.83 72.38 26.83 68.59 26.83 65.49 23.55 65.49 19.53 65.49 15.51 68.59 12.48 72.36 12.48 74.28 12.48 75.73 13.15 76.85 14.59L76.85 12.93 79.81 12.93ZM68.71 19.59C68.71 21.99 70.47 23.89 72.72 23.89 74.8 23.89 76.57 21.99 76.57 19.72 76.57 17.45 74.81 15.44 72.62 15.44 70.43 15.44 68.72 17.25 68.72 19.58L68.72 19.58Z" fill="#FFFFFF"/><path d="M96.37 19.65C96.37 23.66 93.19 26.84 89.18 26.84 85.17 26.84 82.08 23.58 82.08 19.54 82.08 15.72 85.37 12.49 89.27 12.49 93.17 12.49 96.37 15.67 96.37 19.65ZM85.31 19.62C85.31 22.02 87.02 23.87 89.24 23.87 91.46 23.87 93.14 22.05 93.14 19.7 93.14 17.35 91.38 15.45 89.24 15.45 87.1 15.45 85.31 17.35 85.31 19.62Z" fill="#FFFFFF"/><path d="M99.02 15.91 97.44 15.91 97.44 12.94 99.02 12.94 99.02 8.48 102.25 8.48 102.25 12.94 104.17 12.94 104.17 15.91 102.25 15.91 102.25 26.38 99.02 26.38C99.02 26.38 99.02 15.91 99.02 15.91Z" fill="#FFFFFF"/><path d="M108.64 21.09C109.07 22.69 110.62 23.87 112.25 23.87 113.56 23.87 114.52 23.310 115.24 22.13L118.79 22.13C117.96 24.85 115.24 26.83 112.32 26.83 108.39 26.83 105.24 23.65 105.24 19.67 105.24 15.69 108.39 12.4 112.32 12.4 116.25 12.4 119.27 15.61 119.27 19.45 119.27 19.96 119.22 20.33 119.08 21.08L108.64 21.08ZM116.12 18.51C115.67 16.59 114.22 15.38 112.35 15.38 110.48 15.38 108.98 16.63 108.56 18.51L116.12 18.51Z" fill="#FFFFFF"/><path d="M134.74 22C134.2 23.49 133.59 24.4 132.52 25.26 131.32 26.25 129.61 26.84 128.03 26.84 124.1 26.84 120.87 23.58 120.87 19.6 120.87 15.62 124.08 12.5 128 12.5 129.81 12.5 131.55 13.19 132.89 14.45 133.82 15.31 134.28 16.03 134.73 17.41L131.1 17.41C130.3 15.99 129.39 15.43 128 15.43 125.73 15.43 124.1 17.22 124.1 19.65 124.1 22.08 125.81 23.87 128.14 23.87 129.34 23.87 130.36 23.23 131.1 22L134.74 22Z" fill="#FFFFFF"/><path d="M136.67 8.48 139.9 8.48 139.9 13.88C140.89 12.95 142.04 12.49 143.38 12.49 144.96 12.49 146.66 13.37 147.6 14.68 148.32 15.67 148.59 16.79 148.59 18.79L148.59 26.38 145.36 26.38 145.36 19.51C145.36 16.7 144.5 15.45 142.64 15.45 141.65 15.45 140.85 15.93 140.39 16.79 140.04 17.38 139.91 18.23 139.91 19.57L139.91 26.38 136.68 26.38 136.68 8.48 136.68 8.48Z" fill="#FFFFFF"/></g></svg><span class="tag">Projekt 111 · Fáze I · interní</span></div>
+    <div class="ones" aria-hidden="true"><span>1</span><span>1</span><span>1</span></div>
+    <h1>Otázky a odpovědi ke změně řízení</h1>
+    <p class="lead">Po videu vás napadnou otázky. Tady jsou odpovědi na ty, které čekáme. Pokud tu vaše otázka chybí, zeptejte se a stránku doplníme.</p>
+    <div class="motto"><b>Jeden tým</b><b>Jeden cíl</b><b>Jedno vedení</b></div>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+<section id="zkratka" aria-labelledby="h-zkratka">
+  <header><span class="eyebrow">Ve zkratce</span><h2 id="h-zkratka">Čtyři věty, které platí</h2></header>
+  <div class="tldr">
+    <div><strong>Business as usual.</strong><span>Projekty jedou naplno, nic nezastavujeme a na nic nečekáme. Termíny, SLA i sliby zákazníkům platí beze změny.</span></div>
+    <div><strong>Změna je nutná.</strong><span>Rosteme, máme víc firem a přišla AI. Se starým nastavením bychom se začali ztrácet v překladu.</span></div>
+    <div><strong>Začíná u vedení.</strong><span>Tým by neměl mít víc než 8 členů. Platí to i pro vedení: Kernel má 8 lidí.</span></div>
+    <div><strong>Teď se skládají týmy.</strong><span>Jediný úkol Kernelu do 15. února: sestavit své týmy. Budeme se vás ptát, jak práce funguje dnes a co by šlo líp.</span></div>
+  </div>
+  <nav class="toc" aria-label="Témata" style="margin-top:20px">
+    <a href="#proc">Proč měníme</a><a href="#kernel">Kernel a Shell</a><a href="#role">Kdo za co odpovídá</a><a href="#ja">Co to znamená pro mě</a><a href="#lide">Lidé, peníze, AI</a><a href="#zakaznik">Zákazníci a projekty</a><a href="#kdy">Harmonogram</a><a href="#kontakt">Kam s otázkou</a>
+  </nav>
+</section>
+
+<section id="proc" aria-labelledby="h-proc">
+  <header><span class="eyebrow">Proč měníme</span><h2 id="h-proc">Firma funguje. Proč tedy něco měnit?</h2></header>
+  <div class="qa">
+    <div class="q"><h3>Algotech přece funguje dobře. Proč změna?</h3>
+      <p>Ano, funguje. Změnu neděláme proto, že by byl problém, ale proto, aby nevznikl. Za posledních pár let jsme vyrostli, přidali se k nám MyCom a Expinit a máme hodně divizí. Odpovědnost se mezi nimi rozmývá, zákazník často vidí několik firem místo jedné a spousta rozhodnutí čeká na jednoho člověka. Čím víc porosteme, tím víc by se toho ztrácelo v překladu.</p></div>
+    <div class="q"><h3>Proč teď, když se nám daří?</h3>
+      <p>Protože teď na to máme sílu. Měnit firmu ve chvíli, kdy hoří, je mnohem dražší a bolestivější. A AI mění celý IT obor právě teď. Kdo na ni nebude mít jednotný základ, bude za dva roky dohánět ostatní.</p></div>
+    <div class="q"><h3>Co přesně znamená „111“?</h3>
+      <p><b>Jeden tým</b> – Algotech, MyCom a Expinit jako jedna skupina, ne soubor divizí. <b>Jeden cíl</b> – všichni táhneme za stejná čísla, kterým věříme. <b>Jedno vedení</b> – jasné odpovědnosti a jedno místo, kde se rozhoduje.</p></div>
+    <div class="q"><h3>Když se týmy a postupy spojí, čí způsob práce zůstane?</h3>
+      <p>Ten lepší. Ne ten, který tu je déle, a ne ten, na který je někdo zvyklý. Platí to pro postupy, nástroje i způsob řízení. Pokud víte, že něco děláte líp než jinde ve skupině, řekněte to.</p></div>
+    <div class="q"><h3>Není to jen další reorganizace, která za rok vyšumí?</h3>
+      <p>Proto má změna pevná pravidla: každý krok má vlastníka a termín, a výsledek se měří v číslech, ne v prezentacích. V říjnu 2027 změnu společně vyhodnotíme. Pokud něco nefunguje, řekneme to nahlas a upravíme to.</p></div>
+  </div>
+</section>
+
+<section id="kernel" aria-labelledby="h-kernel">
+  <header><span class="eyebrow">Kernel a Shell</span><h2 id="h-kernel">Nové názvy, jednoduchý princip</h2>
+  <p class="sub">Jsme IT firma, tak jsme si názvy půjčili z operačního systému.</p></header>
+  <div class="ks">
+    <svg viewBox="0 0 200 200" role="img" aria-label="Kernel uprostřed, kolem něj Shell">
+      <circle cx="100" cy="100" r="94" fill="var(--chip)" stroke="var(--accent)" stroke-width="2"/>
+      <circle cx="100" cy="100" r="52" fill="var(--accent)"/>
+      <text x="100" y="98" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">KERNEL</text>
+      <text x="100" y="116" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" fill="#FFFFFF">vedení</text>
+      <text x="100" y="32" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" fill="var(--accent-ink)">SHELL</text>
+      <text x="100" y="178" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="11" fill="var(--muted)">týmy</text>
+    </svg>
+    <dl>
+      <div><dt>Kernel (jádro)</dt><dd>V počítači řídí zdroje a rozhoduje, kdo dostane procesor a paměť. U nás je to nové užší vedení firmy. Nahrazuje dosavadní TMAG.</dd></div>
+      <div><dt>Shell (obal)</dt><dd>Obaluje jádro a je rozhraním mezi jádrem a uživateli: tudy jdou úkoly dovnitř a výsledky ven. U nás jsou to týmy, které si členové Kernelu do 15. února sestaví.</dd></div>
+    </dl>
+  </div>
+  <div class="qa" style="margin-top:12px">
+    <div class="q"><h3>Čím se Kernel liší od TMAGu?</h3>
+      <p>Každý člen Kernelu má jasně vymezenou oblast a za ni odpovídá celý, napříč Algotechem, MyComem i Expinitem. Rozhodnutí padají na pravidelných schůzkách, ne na chodbě. Kernel se řídí metodou Traction (EOS): krátká týdenní porada nad čísly a problémy, měsíční vyhodnocení výsledků a jednou za čtvrtletí výběr několika hlavních úkolů na další kvartál.</p></div>
+    <div class="q"><h3>Kdo je v Kernelu?</h3>
+      <p>František Zeman, Josef Pavlis, Šárka Štencová, Petr Loužecký, Alena Vongrejová, Roman Kopecký, David Kazda a Vojtěch Černý. Co kdo dělá, najdete <a href="#role">o kousek níž</a>.</p></div>
+    <div class="q"><h3>Jsem vedoucí a v Kernelu nejsem. Co to pro mě znamená?</h3>
+      <p>Váš tým i vaše odpovědnost teď platí beze změny. Člen Kernelu, pod kterého vaše oblast spadá, s vámi bude Shell skládat a počítá s vaší zkušeností. O tom, jak bude vypadat vaše role v nové struktuře, s vámi bude mluvit osobně, a to dřív, než se cokoli oznámí.</p></div>
+  </div>
+</section>
+
+<section id="role" aria-labelledby="h-role">
+  <header><span class="eyebrow">Kdo za co odpovídá</span><h2 id="h-role">Členové Kernelu a jejich oblasti</h2>
+  <p class="sub">Za kým jít s čím. Popisy vychází ze zadání rolí, která jsme pro každého sepsali.</p></header>
+  <div class="roles">
+    <article class="role wide"><div class="who"><h3>František Zeman</h3><span class="code">CEO</span></div>
+      <p class="what">Garant celé změny 111. Vede Kernel, drží strategii, akvizice a celkový výsledek skupiny.</p>
+      <p class="ask"><b>Jědte za ním, když:</b> máte otázku ke směru firmy nebo ke změně jako celku. Nejrychlejší cesta vede přes Štěpánku.</p></article>
+
+    <article class="role"><div class="who"><h3>Josef Pavlis</h3><span class="code">COO</span></div>
+      <p class="what">Provozní ředitel. Stará se o lidi a o to, aby firma jako celek fungovala.</p>
+      <ul><li>HR: nábor, adaptace, rozvoj a vzdělávání</li><li><b>Kompenzační systém: mzdy, odměny a benefity</b></li><li>Procesy, organizační struktura a interní pravidla</li><li>Kanceláře a provoz firmy</li><li>Začlenění nových firem po akvizicích</li></ul>
+      <p class="ask"><b>Jědte za ním s:</b> otázkami k odměňování, smlouvám, kariéře, kancelářím a organizaci.</p></article>
+
+    <article class="role"><div class="who"><h3>Šárka Štencová</h3><span class="code">CFO</span></div>
+      <p class="what">Finanční ředitelka. Drží finance, plán a čísla, kterým budeme všichni věřit.</p>
+      <ul><li>Finanční plán 2027 a jeho plnění</li><li>Výkazy práce a výsledek po střediscích</li><li>Jedna pravda: stejná čísla v plánu, v CRM i v cílech</li><li>Měření přínosu změny a AI</li></ul>
+      <p class="ask"><b>Jědte za ní s:</b> čísly, plánem a fakturací.</p></article>
+
+    <article class="role"><div class="who"><h3>Petr Loužecký</h3><span class="code">CTO</span></div>
+      <p class="what">Technický ředitel. Odpovídá za to, abychom technicky fungovali jako jedna firma.</p>
+      <ul><li>Jednotný produkt a portfolio technologií</li><li>Architektura a technické standardy</li><li>Bezpečnost a certifikace</li><li>Technické zázemí AOS, naší interní platformy</li></ul>
+      <p class="ask"><b>Jědte za ním s:</b> technologiemi, nástroji, bezpečností a architekturou řešení.</p></article>
+
+    <article class="role"><div class="who"><h3>Alena Vongrejová</h3><span class="code">CDO</span></div>
+      <p class="what">Ředitelka delivery. Sjednotí, jak dodáváme zákazníkům, ať jde o ERP, cloud, security, call centrum nebo cokoli jiného.</p>
+      <ul><li>Jeden standard a metodika dodávky</li><li>SLA a kvalita servisu</li><li>Kapacity, vytížení a jejich plánování</li><li>Marže a výsledek delivery středisek</li><li>Spojování týmů, které dělají podobnou práci</li></ul>
+      <p class="ask"><b>Jědte za ní s:</b> projekty, kapacitami, eskalacemi a kvalitou dodávek.</p></article>
+
+    <article class="role"><div class="who"><h3>Roman Kopecký</h3><span class="code">Vývoj na zakázku</span></div>
+      <p class="what">Vede vývoj softwaru na zakázku jako samostatný byznys s vlastním způsobem práce.</p>
+      <ul><li>Zakázkový vývoj a AI řešení pro zákazníky</li><li>Architektura, analýza a projektové řízení vývoje</li><li>Sjednocení vývoje napříč produkty</li><li>Kvalita a předvídatelná marže zakázek</li></ul>
+      <p class="ask"><b>Jědte za ním s:</b> vývojovými projekty a odhady pro zákazníky.</p></article>
+
+    <article class="role"><div class="who"><h3>David Kazda</h3><span class="code">Obchod a marketing</span></div>
+      <p class="what">Zastřešuje obchod i marketing. Do budoucna tyto role rozdělíme a dořešíme i presales podporu.</p>
+      <ul><li>Obchod: pipeline, vztah se zákazníkem, uzavření obchodu</li><li>Marketing: poptávka, značka, web a akce</li><li>Portfolio, balíčky a ceníky</li><li>Presales a veřejné zakázky</li></ul>
+      <p class="ask"><b>Jědte za ním s:</b> obchodními příležitostmi, nabídkami a tendry.</p></article>
+
+    <article class="role"><div class="who"><h3>Vojtěch Černý</h3><span class="code">AI guru</span></div>
+      <p class="what">Stará se, aby AI u nás nebyla jen v prezentacích, ale v každodenní práci.</p>
+      <ul><li>AI program celé skupiny a jeho priority</li><li>AI nástroje a postupy pro každodenní práci</li><li>Síť AI ambasadorů z jednotlivých týmů</li><li>Školení a sdílení osvědčených postupů</li></ul>
+      <p class="ask"><b>Jědte za ním s:</b> nápadem, co by za vás mohla dělat AI, nebo když nevíte, jak začít.</p></article>
+
+    <article class="role"><div class="who"><h3>Štěpánka Chříbková</h3><span class="code">Asistentka CEO</span></div>
+      <p class="what">Není členkou Kernelu, ale cesta k Františkovi vede přes ni.</p>
+      <ul><li>Kalendář a schůzky CEO</li><li>Koordinace jednání vedení</li></ul>
+      <p class="ask"><b>Jědte za ní, když:</b> potřebujete termín s Františkem.</p></article>
+  </div>
+</section>
+
+<section id="ja" aria-labelledby="h-ja">
+  <header><span class="eyebrow">Co to znamená pro mě</span><h2 id="h-ja">Vaše práce teď a za pár měsíců</h2></header>
+  <div class="qa">
+    <div class="q"><h3>Mění se mi teď něco v práci?</h3>
+      <p>Ne. Jede se business as usual: stejné projekty, stejní lidé, stejný vedoucí. Jediné, co se teď děje, je, že členové Kernelu skládají své týmy. Dokud vám vedoucí osobně neřekne jinak, platí všechno, jak je.</p></div>
+    <div class="q"><h3>Komu teď reportuji?</h3>
+      <p>Stejně jako dosud. Změny v tom, kdo komu reportuje, přijdou až s novou strukturou a každý se o nich dozví osobně.</p></div>
+    <div class="q"><h3>Kdy bude nová struktura platit?</h3>
+      <p>Do 15. února připraví Kernel koncept týmů a postup změn. Nová struktura má začít platit od 1. května 2027. Do té doby budeme průběžně informovat, co se rozhodlo.</p></div>
+    <div class="q"><h3>Kdo za mnou přijde a co po mně bude chtít?</h3>
+      <p>Člen Kernelu pro vaši oblast nebo někdo z jeho týmu. Bude se ptát, jak vaše práce dnes funguje, kde ztrácíte čas, co se dělá dvakrát a co by šlo líp. Nejde o hodnocení vás, jde o hledání lepšího fungování.</p></div>
+    <div class="q"><h3>Mám nápad nebo nesouhlasím. Co s tím?</h3>
+      <p>Řekněte to nahlas a hned, dokud se rozhoduje. Svému vedoucímu, členovi Kernelu pro danou oblast, nebo přímo Františkovi. Až se rozhodne, táhneme za jeden provaz.</p></div>
+    <div class="q"><h3>Co z toho budu mít já?</h3>
+      <ul><li>Jasno, kdo za co odpovídá a za kým jít.</li><li>Méně čekání na rozhodnutí.</li><li>Méně rutiny díky AI a víc času na práci, která vás baví.</li><li>Srozumitelnější pravidla odměňování.</li></ul></div>
+  </div>
+</section>
+
+<section id="lide" aria-labelledby="h-lide">
+  <header><span class="eyebrow">Lidé, peníze, AI</span><h2 id="h-lide">Otázky, které se nahlas neříkají</h2>
+  <p class="sub">Odpovídáme na ně rovnou, protože je stejně řešíte u kávy.</p></header>
+  <div class="qa">
+    <div class="q"><h3>Bude se propouštět?</h3>
+      <p>Nebudeme slibovat, že se změna nikoho nedotkne. To by nebyla pravda. Cílem je zjednodušit firmu, ne škrtat naslepo. Hledáme místa, kde dva týmy dělají totéž, a rutinu, kterou za nás může dělat AI. Šetříme na překryvech a rutině, nikdy na zákaznících.</p>
+      <p>Platí jedno pravidlo: když se změna týká konkrétního člověka, dozví se to jako první, osobně a s předstihem. Ne z e-mailu, ne z porady, ne z chodby.</p></div>
+    <div class="q"><h3>Proč má zeštíhlování začít u managementu?</h3>
+      <p>Protože nemůžeme chtít po týmech něco, co nejdřív neuděláme sami. Tým by neměl mít víc než 8 členů a Kernel, který nahrazuje TMAG, toto pravidlo splňuje jako první: 8 lidí, jasné odpovědnosti, méně vrstev a rychlejší rozhodování. Stejné pravidlo pak platí pro každý tým v Shellu.</p></div>
+    <div class="q"><h3>Mění se mi plat nebo odměny?</h3>
+      <p>Teď ne. Péči o kompenzační systém – mzdy, odměny a benefity – má nově na starost Josef Pavlis. Cílem je, aby odměny byly srozumitelné a navázané na výsledky, které můžete ovlivnit. Než se cokoli změní, dozvíte se pravidla předem.</p></div>
+    <div class="q"><h3>Vezme mi AI práci?</h3>
+      <p>AI převezme rutinu, ne lidi. Chceme, aby za nás dělala opakující se věci a nám zůstalo víc času na zákazníky a na práci, kterou umí jen člověk. Kdo se s AI naučí pracovat, má v IT nejlepší kartu do budoucna. Vojta s tím rád pomůže.</p></div>
+    <div class="q"><h3>Co je AOS?</h3>
+      <p>Algotech AI Operating System: naše interní platforma pro plánování, vyhodnocování a informace. Na jednom místě v ní uvidíme plány, výsledky a vše, co potřebujeme vědět o firmě. Budeme ji stavět po malých, dotažených krocích.</p></div>
+  </div>
+</section>
+
+<section id="zakaznik" aria-labelledby="h-zakaznik">
+  <header><span class="eyebrow">Zákazníci a projekty</span><h2 id="h-zakaznik">Business jede dál</h2></header>
+  <div class="qa">
+    <div class="q"><h3>Mám pozdržet projekt nebo rozhodnutí, než se to usadí?</h3>
+      <p>Ne. Makáme dál naplno. Termíny, SLA a závazky vůči zákazníkům platí beze změny. Pokud změna někde začne brzdit práci pro zákazníka, okamžitě to eskalujte. Platí pravidlo: když klesá kvalita servisu, zpomalíme změnu, ne business.</p></div>
+    <div class="q"><h3>Co mám říct zákazníkovi, když se zeptá?</h3>
+      <p class="quote">„Zjednodušujeme vnitřní řízení, aby u nás měl každý zákazník jeden vstup a jeden standard služeb. Pro vás se nic nemění, váš kontakt i podmínky zůstávají. Pokud něco, tak to pro vás bude jednodušší.“</p></div>
+    <div class="q"><h3>Mění se něco pro MyCom a Expinit?</h3>
+      <p>Postupně budeme fungovat jako jedna skupina s jedním standardem. Kernel řídí celou skupinu, ne jen Algotech. Konkrétní kroky vám řekneme včas a předem.</p></div>
+  </div>
+</section>
+
+<section id="kdy" aria-labelledby="h-kdy">
+  <header><span class="eyebrow">Harmonogram</span><h2 id="h-kdy">Co nás čeká</h2></header>
+  <ol class="tl">
+    <li class="now"><time datetime="2026-11-16">16. 11. 2026</time><span>Video pro celou firmu. Členové Kernelu začínají skládat své týmy.</span></li>
+    <li><time datetime="2026-12">prosinec 2026</time><span>První setkání Kernelu.</span></li>
+    <li><time datetime="2026-12-15">15. 12. 2026</time><span>Plán na rok 2027 hotový a zkontrolovaný.</span></li>
+    <li><time datetime="2027-02-15">15. 2. 2027</time><span>Členové Kernelu mají sestavené týmy (Shell) a koncept a postup změn.</span></li>
+    <li><time datetime="2027-05-01">1. 5. 2027</time><span>Nová organizační struktura začíná platit.</span></li>
+    <li><time datetime="2027-10-01">říjen 2027</time><span>Společné vyhodnocení: co funguje, co upravit, další kroky.</span></li>
+  </ol>
+</section>
+
+<section id="kontakt" aria-labelledby="h-kontakt">
+  <header><span class="eyebrow">Kam s otázkou</span><h2 id="h-kontakt">Ptejte se. Každá otázka je v pořádku.</h2></header>
+  <div class="contact">
+    <div><strong>Váš vedoucí</strong><span>První místo pro otázky k vaší práci a týmu.</span></div>
+    <div><strong>Člen Kernelu</strong><span>Pro otázky k jeho oblasti. Kdo co má, je výše v přehledu rolí.</span></div>
+    <div><strong>František Zeman</strong><span>Ke změně jako celku. Termín domluví Štěpánka.</span></div>
+  </div>
+</section>
+
+</div>
+</main>
+<footer><div class="wrap"><span>Algotech · Projekt 111 · interní informace pro zaměstnance skupiny</span><span>Aktualizováno 16. 11. 2026</span></div></footer>
+
+</body>
+</html>
